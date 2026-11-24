@@ -76,10 +76,12 @@ builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
+using (var scope = app.Services.CreateScope())
 {
-    app.MapOpenApi();
+    scope.ServiceProvider.GetRequiredService<AppDbContext>().Database.Migrate();
 }
+
+app.MapOpenApi();
 
 //app.UseHttpsRedirection();
 

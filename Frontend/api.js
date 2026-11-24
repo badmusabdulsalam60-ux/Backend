@@ -5,7 +5,9 @@
 
 // Change this address when the backend is deployed,
 // e.g. "https://your-backend-address/api"
-const API_BASE_URL = "http://localhost:5212/api";
+const API_BASE_URL = window.location.hostname === "localhost"
+    ? "http://localhost:5212/api"
+    : "/api";
 
 
 // =====================================
